@@ -1,0 +1,57 @@
+.busqueda-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.busqueda-container input,
+.busqueda-container select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #007BFF;
+    font-size: 16px;
+    color: #333;
+}
+
+.busqueda-container input {
+    width: 60%;
+}
+
+.busqueda-container select {
+    width: 35%;
+    background-color: #f0f8ff;
+    color: #007BFF;
+}
+
+.tabla-container {
+    overflow-x: auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.1);
+}
+
+#tabla-productos {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tabla-productos th,
+#tabla-productos td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#tabla-productos th {
+    background-color: #007BFF;
+    color: white;
+}
+
+.img-miniatura {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}

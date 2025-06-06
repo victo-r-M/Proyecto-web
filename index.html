@@ -1,0 +1,124 @@
+<?php
+include 'php/logins/sesion.php'; 
+include 'php/dashboard.php';
+
+?>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Invenez</title>
+    <link rel="stylesheet" href="css/index.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="img/favicon.png" type="image/png" />
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+  </head>
+  <body>
+    <!-- Botón para menú en móvil -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- Menú lateral -->
+    <div class="sidebar" id="sidebar">
+      <div class="logo-container">
+        <img src="img/logo.png" alt="Logo" class="logo-img" />
+        <span class="logo-text">Invenez</span>
+      </div>
+      <a href="main.html"><i data-lucide="home" class="icon"></i> Inicio</a>
+
+      <a href="#" class="has-submenu" onclick="toggleSubmenu(this)">
+        <i data-lucide="package" class="icon"></i> Productos
+      </a>
+      <div class="submenu">
+        <a href="html/lista_producto.html">Lista</a>
+        <a href="html/producto_nuevo.html">Nuevo</a>
+      </div>
+
+      <a href="#" class="has-submenu" onclick="toggleSubmenu(this)">
+        <i data-lucide="shopping-cart" class="icon"></i> Ventas
+      </a>
+      <div class="submenu">
+        <a href="html/historial_ventas.html">Historial</a>
+        <a href="html/nueva_venta.html">Nueva venta</a>
+      </div>
+
+      <?php if ($rol == 1): ?>
+      <a href="crear_cuenta.html"><i data-lucide="user-plus" class="icon"></i> Crear cuenta</a>
+      <?php endif; ?>
+
+      <a href="php/logins/logout.html"><i data-lucide="log-out" class="icon"></i> Cerrar sesión</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+      <div class="header-box">
+        <h1>Bienvenido a Invenez</h1>
+        <p>
+          Sesión iniciada como:
+          <strong><?php echo htmlspecialchars($nombreUsuario); ?></strong>
+        </p>
+      </div>
+
+      <!-- Panel de tarjetas resumen -->
+    <div class="dashboard">
+  <div class="card">
+    <h3>Total de productos</h3>
+    <p><?php echo $totalProductos; ?></p>
+  </div>
+
+  <div class="card">
+    <h3>Ventas del mes</h3>
+    <p>$<?php echo number_format($ventasMes, 2); ?></p>
+  </div>
+
+  <div class="card">
+    <h3>Productos bajos en stock</h3>
+    <p id="redStock"><?php echo $productosBajoStock; ?></p>
+  </div>
+
+  <div class="card">
+    <h3>Productos en stock</h3>
+    <p><?php echo $productosEnStock; ?></p>
+  </div>
+<div class="card">
+  <h3>Producto más vendido</h3>
+  <p><?php echo htmlspecialchars($productoMasVendido); ?></p>
+</div>
+
+<div class="card">
+  <h3>Producto menos vendido</h3>
+  <p><?php echo htmlspecialchars($productoMenosVendido); ?></p>
+</div>
+
+  <div class="card">
+    <h3>Productos sin stock</h3>
+    <p id="redStock"><?php echo $productosSinStock; ?></p>
+  </div>
+
+
+
+  <div class="card">
+    <h3>Total de ventas</h3>
+    <p><?php echo $totalVentas; ?></p>
+  </div>
+</div>
+
+    
+
+      <!-- Alerta importante -->
+      <?php if ($productosBajoStock > 0): ?>
+  <div class="alert">
+    <strong>¡Atención!</strong> Hay productos que están por agotarse. Revisa el inventario.
+  </div>
+<?php endif; ?>
+
+    <script src="script/index.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => lucide.createIcons());
+    </script>
+  </body>
+</html>

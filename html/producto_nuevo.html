@@ -1,0 +1,192 @@
+<?php
+include '../php/logins/sesion.php';  
+?>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Invenez</title>
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/producto_nuevo.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../img/favicon.png" type="image/png" />
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+  </head>
+  <body>
+    <!-- Botón para menú en móvil -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- Menú lateral -->
+    <div class="sidebar" id="sidebar">
+      <div class="logo-container">
+        <img src="../img/logo.png" alt="Logo" class="logo-img" />
+        <span class="logo-text">Invenez</span>
+      </div>
+      <a href="../main.html"><i data-lucide="home" class="icon"></i> Inicio</a>
+
+      <a href="#" class="has-submenu" onclick="toggleSubmenu(this)">
+        <i data-lucide="package" class="icon"></i> Productos
+      </a>
+      <div class="submenu">
+        <a href="lista_producto.html">Lista</a>
+        <a href="producto_nuevo.html">Nuevo</a>
+      </div>
+
+      <a href="#" class="has-submenu" onclick="toggleSubmenu(this)">
+        <i data-lucide="shopping-cart" class="icon"></i> Ventas
+      </a>
+      <div class="submenu">
+        <a href="historial_ventas.html">Historial</a>
+        <a href="nueva_venta.html">Nueva venta</a>
+      </div>
+
+        <?php if ($rol == 1): ?>
+    <a href="../crear_cuenta.html"><i data-lucide="user-plus" class="icon"></i> Crear cuenta</a>
+       <?php endif; ?>
+
+  <a href="../php/logins/logout.html"><i data-lucide="log-out" class="icon"></i> Cerrar sesión</a>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+      <div class="header-box">
+        <h1>Agregar Nuevo Producto</h1>
+        <p>
+          Sesión iniciada como:
+          <strong><?php echo htmlspecialchars($nombreUsuario); ?></strong>
+        </p>
+      </div>
+
+      <div class="form-card">
+        <form
+        id="producto-form"
+          action="../php/guardar_producto.php"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre del producto</label>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="Ej: Papel de baño"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="descripcion">Descripción</label>
+              <textarea
+                id="descripcion"
+                name="descripcion"
+                rows="3"
+                placeholder="Ej: Hecho con pulpa de celulosa de alta calidad"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="precioCompra">Precio de Compra</label>
+              <div class="input-group">
+                <span class="input-symbol">$</span>
+                <input
+                  type="number"
+                  id="precioCompra"
+                  name="precioCompra"
+                  step="0.01"
+                  placeholder="0.00"
+                  required
+                  min="0"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="precioVenta">Precio de Venta</label>
+              <div class="input-group">
+                <span class="input-symbol">$</span>
+                <input
+                  type="number"
+                  id="precioVenta"
+                  name="precioVenta"
+                  step="0.01"
+                  placeholder="0.00"
+                  required
+                  min="0"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="stock">Stock Inicial</label>
+              <input
+                type="number"
+                id="stock"
+                name="stock"
+                placeholder="0"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="stockMinimo">Stock Mínimo</label>
+              <input
+                type="number"
+                id="stockMinimo"
+                name="stockMinimo"
+                placeholder="0"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="imagen">Imagen del producto</label>
+              <div
+                class="upload-box"
+                onclick="document.getElementById('imagen').click()"
+              >
+                <span id="upload-text">Añadir imagen</span>
+                <img
+                  id="preview"
+                  class="preview-img"
+                  src="#"
+                  alt="Vista previa"
+                  style="display: none"
+                />
+              </div>
+              <input
+                type="file"
+                id="imagen"
+                name="imagen"
+                accept="image/*"
+                style="display: none"
+                required
+              />
+            </div>
+          </div>
+
+          <button type="submit">Guardar Producto</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="../script/index.js"></script>
+        <script src="../script/editar_productos.js"></script>
+
+    
+    <script>
+      window.addEventListener("DOMContentLoaded", () => lucide.createIcons());
+    </script>
+    <script src="../script/marco_img.js"></script>
+  </body>
+</html>

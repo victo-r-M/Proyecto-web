@@ -1,0 +1,206 @@
+/* ------------ RESET Y BODY ------------ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f6fc;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ------------ MENÚ LATERAL ------------ */
+.sidebar {
+  width: 260px;
+  background: linear-gradient(180deg, #1b4de4, #4b7bec);
+  color: white;
+  padding-top: 60px;
+  transition: transform 0.3s ease;
+}
+
+/* Enlaces del menú */
+.sidebar a {
+  display: block;
+  padding: 15px 25px;
+  color: white;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+/* Hover en enlaces */
+.sidebar a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Submenús ocultos por defecto */
+.submenu {
+  display: none;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.submenu a {
+  padding-left: 45px;
+  font-size: 15px;
+}
+
+/* Flecha ▼ en submenús */
+.has-submenu::after {
+  content: '▼';
+  float: right;
+  margin-right: 10px;
+  transition: transform 0.3s;
+}
+
+/* Flecha invertida cuando se abre */
+.has-submenu.open::after {
+  transform: rotate(180deg);
+}
+
+/* Mostrar submenu */
+.has-submenu.open + .submenu {
+  display: block;
+}
+
+/* ------------ ÍCONOS CON LUCIDE ------------ */
+/* Estilo para todos los íconos SVG */
+.icon {
+  margin-right: 12px;
+  stroke: white;              /* Color del ícono (blanco por defecto) */
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  stroke-width: 1.8;
+}
+
+/* ------------ BOTÓN PARA MÓVIL ------------ */
+.menu-toggle {
+  display: none;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: #0b00a3;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+/* ------------ CONTENIDO PRINCIPAL ------------ */
+.main-content {
+  flex-grow: 1;
+  padding: 30px;
+}
+
+/* ------------ TARJETAS (DASHBOARD) ------------ */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+  margin-top: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.card p {
+  font-size: 24px;
+  color: #1b4de4;
+  margin: 10px 0 0;
+}
+#redStock {
+color: #e74c3c
+}
+
+/* ------------ LISTA DE ACTIVIDADES ------------ */
+.activity-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+
+.activity-list li {
+  padding: 8px 0;
+}
+
+/* ------------ ALERTA ------------ */
+.alert {
+  background-color: #fffae6;
+  border-left: 5px solid #f1c40f;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+/* ------------ HEADER SUPERIOR ------------ */
+.header-box {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 20px 30px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.header-box h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #080808;
+}
+
+/* ------------ LOGO EN LA PARTE SUPERIOR DEL MENÚ ------------ */
+.logo-container {
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logo-text {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 1px;
+}
+
+/* Si usas una imagen como logo en lugar de texto */
+.logo-img {
+  width: 70px;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+/* ------------ RESPONSIVO (MÓVIL) ------------ */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    height: 100%;
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .main-content {
+    padding-top: 60px;
+  }
+}

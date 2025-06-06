@@ -1,0 +1,102 @@
+<?php
+include '../php/logins/sesion.php';  
+?>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invenez</title>
+  <link rel="stylesheet" href="../css/index.css" />
+  <link rel="stylesheet" href="../css/producto_nuevo.css" />
+  <link rel="stylesheet" href="../css/nueva_venta.css" />
+
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../img/favicon.png" type="image/png" />
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+</head>
+
+<body>
+  <!-- Botón para menú en móvil -->
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+  <!-- Menú lateral -->
+  <div class="sidebar" id="sidebar">
+    <div class="logo-container">
+      <img src="../img/logo.png" alt="Logo" class="logo-img" />
+      <span class="logo-text">Invenez</span>
+    </div>
+    <a href="../main.html"><i data-lucide="home" class="icon"></i> Inicio</a>
+
+    <a href="#" class="has-submenu" onclick="toggleSubmenu(this)">
+      <i data-lucide="package" class="icon"></i> Productos
+    </a>
+    <div class="submenu">
+      <a href="lista_producto.html">Lista</a>
+      <a href="producto_nuevo.html">Nuevo</a>
+    </div>
+
+    <a href="#" class="has-submenu" onclick="toggleSubmenu(this)">
+      <i data-lucide="shopping-cart" class="icon"></i> Ventas
+    </a>
+    <div class="submenu">
+      <a href="historial_ventas.html">Historial</a>
+      <a href="nueva_venta.html">Nueva venta</a>
+    </div>
+
+        <?php if ($rol == 1): ?>
+    <a href="../crear_cuenta.html"><i data-lucide="user-plus" class="icon"></i> Crear cuenta</a>
+       <?php endif; ?>
+
+  <a href="../php/logins/logout.html"><i data-lucide="log-out" class="icon"></i> Cerrar sesión</a>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+    <div class="header-box">
+      <h1>Nueva Venta</h1>
+      <p>
+          Sesión iniciada como:
+          <strong><?php echo htmlspecialchars($nombreUsuario); ?></strong>
+      </p>
+    </div>
+
+    <!-- Contenedor buscador -->
+    <div class="form-card">
+      <div class="form-group">
+        <label for="buscar">Buscar producto</label>
+        <input type="text" id="buscar" placeholder="Escribe el nombre del producto..." onkeyup="buscarProducto()" />
+
+        <!-- Lista de sugerencias -->
+        <div id="sugerencias" class="sugerencias-box"></div>
+      </div>
+
+      <!-- Lista de productos seleccionados -->
+      <div class="venta-box">
+        <h2>Venta</h2>
+        <div id="lista-venta" class="lista-venta"></div>
+
+        <div class="resumen-box">
+          <div class="subtotal">Subtotal: <span id="subtotal">$0.00</span></div>
+          <button class="btn-cobrar" onclick="cobrar()">Cobrar $<span id="totalCobrar">0.00</span></button>
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <!-- Script -->
+    <script src="../script/nueva_venta.js"></script>
+    <script src="../script/index.js"></script>
+
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => lucide.createIcons());
+    </script>
+</body>
+
+</html>
